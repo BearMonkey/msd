@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.monkey.msd.security.mapper.MsdRoleMapper">
+    <resultMap id="queryUserMap" type="org.monkey.msd.security.domain.MsdRole" autoMapping="true">
+        <id column="id" property="id"/>
+		<result column="role_code" property="roleCode"/>
+		<result column="role_name" property="roleName"/>
+        <collection property="auths" ofType="org.monkey.msd.security.domain.MsdAuth" autoMapping="true">
+            <id column="id" property="id"/>
+            <result column="auth_code" property="authCode"/>
+            <result column="auth_name" property="authName"/>
+        </collection>
+    </resultMap>
+	
+	
+	
+    <select id="selectAuthByRoleId" resultMap="queryUserMap">
+        select 
+		      r.id, r.role_code, r.role_name, a.id, a.auth_code, a.auth_name
+         from usr_role r, usr_auth a, usr_role_auth ra
+        where r.id=#{roleId}
+          and r.id=ra.role_id
+		  and ra.auth_id=a.id
+    </select>
+
+    <select id="selectAuthByRoleId" resultMap="queryUserMap">
+        select * from usr_role;
+    </select>
+</mapper>
