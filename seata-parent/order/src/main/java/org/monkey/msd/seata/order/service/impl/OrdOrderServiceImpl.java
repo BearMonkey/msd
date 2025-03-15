@@ -5,6 +5,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.Snowflake;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.monkey.msd.seata.common.dto.Result;
 import org.monkey.msd.seata.exception.exception.BusinessException;
@@ -55,7 +56,8 @@ public class OrdOrderServiceImpl extends ServiceImpl<OrdOrderMapper, OrdOrder> i
     private Snowflake snowflake;
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+//    @Transactional(rollbackFor = Exception.class)
+    @GlobalTransactional(rollbackFor = Exception.class)
     public Boolean addOrder(AddOrderDto addOrderDto) {
         // 参数校验
         this.addOrderCheck(addOrderDto);
