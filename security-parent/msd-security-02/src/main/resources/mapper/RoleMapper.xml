@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.monkey.msd.security02.mapper.RoleMapper">
+    <resultMap id="queryRoleMap" type="org.monkey.msd.security02.pojo.Role">
+        <id property="id" column="id"/>
+        <result property="roleName" column="role_name"/>
+        <collection property="authorities" ofType="org.monkey.msd.security02.pojo.Authority" autoMapping="true" columnPrefix="a_">
+            <id property="id" column="id"/>
+            <result property="authorityName" column="authority_name"/>
+        </collection>
+    </resultMap>
+    <select id="queryAllRoleByRoleName" resultType="org.monkey.msd.security02.pojo.Role">
+        SELECT r.*,
+               a.id AS a_id,
+               a.authority_name AS a_authorityName
+        FROM roles r
+                 LEFT JOIN role_authority ra ON r.id = ra.role_id
+                 LEFT JOIN authority a ON a.id = ra.authority_id
+    </select>
+    <select id="loadRolesByUsername" resultType="org.monkey.msd.security02.pojo.Role">
+        select r.*
+        from roles r,
+             user_role ur,
+             users u where r.id = ur.role_id and u.id = ur.user_id
+                       and u.username = #{username}
+    </select>
+</mapper>

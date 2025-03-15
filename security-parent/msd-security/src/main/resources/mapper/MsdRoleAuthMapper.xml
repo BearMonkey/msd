@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.monkey.msd.security.mapper.MsdUserMapper">
+    <resultMap id="queryUserMap" type="org.monkey.msd.security.domain.MsdUser" autoMapping="true">
+        <id column="id" property="id"/>
+        <id column="username" property="username"/>
+        <id column="password" property="password"/>
+        <id column="name" property="name"/>
+        <id column="gender" property="gender"/>
+        <collection property="roles" ofType="org.monkey.msd.security.domain.MsdRole" autoMapping="true">
+            <id column="id" property="id"/>
+            <result column="role_code" property="roleCode"/>
+            <result column="role_name" property="roleName"/>
+        </collection>
+    </resultMap>
+	
+	
+	
+    <select id="queryUserByUsername" resultMap="queryUserMap">
+        select 
+		      u.id, u.username, u.password, u.name, u.birth, u.gender, r.id, r.role_code, r.role_name
+         from usr_user u, usr_role r, usr_user_role ur
+        where u.username=#{username}
+          and u.id=ur.user_id
+          and r.id=ur.role_id
+    </select>
+    <select id="queryRolesByUserId" resultType="org.monkey.msd.security.domain.MsdRole">
+        select u.id uid, r.id rid, a.id aid
+        from `usr_user` u, usr_role r, usr_auth a, usr_user_role ur, usr_role_auth ra
+        where u.username=#{username}
+          and u.id=ur.user_id
+          and r.id=ur.role_id
+          and ur.role_id=ra.role_id
+          and a.id=ra.auth_id
+    </select>
+</mapper>

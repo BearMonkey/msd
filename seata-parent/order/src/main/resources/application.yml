@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: order
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${nacos.host:localhost}:${nacos.port:8848}
+        namespace: ${nacos.namespace:69dba6d6-2196-4612-a295-1e9dc516bde9}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        group: DEFAULT_GROUP
+        file-extension: yml
+  config:
+    import:
+      - optional:nacos:application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+      - optional:nacos:${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
