@@ -102,11 +102,11 @@ public class OrdOrderServiceImpl extends ServiceImpl<OrdOrderMapper, OrdOrder> i
             StcStock stcStock = stockByIdMap.get(detailDto.getStockId());
             detailList.add(buildOrderDetail(detailDto, orderNo, stcStock));
         }
-        this.save(ordOrder);
-        orderDetailService.saveBatch(detailList);
         OperateInventoryDto operateInventoryDto = new OperateInventoryDto();
         operateInventoryDto.setStockDtoList(stockDtoList);
         stockFeignClient.operateInventory(operateInventoryDto);
+        this.save(ordOrder);
+        orderDetailService.saveBatch(detailList);
         return true;
     }
 

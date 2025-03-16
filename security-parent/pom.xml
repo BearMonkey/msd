@@ -82,12 +82,12 @@
             <version>${fastjson.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc7 -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.oracle.ojdbc7</groupId>
             <artifactId>ojdbc7</artifactId>
             <version>12.1.0.2</version>
         </dependency>
-
+-->
     </dependencies>
 
 </project>
