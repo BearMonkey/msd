@@ -14,10 +14,9 @@
 
     <modules>
         <module>common</module>
+        <module>account</module>
         <module>order</module>
-        <module>order-api</module>
         <module>stock</module>
-        <module>stock-api</module>
         <module>exception-spring-boot-starter</module>
     </modules>
 

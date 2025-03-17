@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>Test-parent</artifactId>
+    <artifactId>test-parent</artifactId>
     <packaging>pom</packaging>
 
     <modules>

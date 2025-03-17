@@ -19,18 +19,26 @@ import java.util.Date;
 @Data
 public class BaseEntity {
 
-    @ApiModelProperty(value = "创建人编号")
+    @ApiModelProperty(value = "创建人")
     @TableField(value = "create_by", fill = FieldFill.INSERT)
     private String createBy;
+
+    @ApiModelProperty(value = "创建人ID")
+    @TableField(value = "create_by_id", fill = FieldFill.INSERT)
+    private String createById;
 
     @ApiModelProperty(value = "创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
-    @ApiModelProperty(value = "修改人编号")
+    @ApiModelProperty(value = "修改人")
     @TableField(value = "update_by", fill = FieldFill.UPDATE)
     private String updateBy;
+
+    @ApiModelProperty(value = "修改人ID")
+    @TableField(value = "update_by_id", fill = FieldFill.UPDATE)
+    private String updateById;
 
     @ApiModelProperty(value = "修改时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

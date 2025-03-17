@@ -25,9 +25,13 @@ public class CustomizeMetaObjectHandler implements MetaObjectHandler {
 
     private static final String CREATE_BY = "createBy";
 
+    private static final String CREATE_BY_ID = "createById";
+
     private static final String INSERT_TIME = "createTime";
 
     private static final String UPDATE_BY = "updateBy";
+
+    private static final String UPDATE_BY_ID = "updateById";
 
     private static final String UPDATE_TIME = "updateTime";
 
@@ -46,6 +50,7 @@ public class CustomizeMetaObjectHandler implements MetaObjectHandler {
         // 创建createTime与管理员
         this.insertDate(INSERT_TIME, metaObject);
         this.insertUserName(CREATE_BY, metaObject);
+        this.insertUserId(CREATE_BY_ID, metaObject);
     }
 
     @Override
@@ -53,6 +58,7 @@ public class CustomizeMetaObjectHandler implements MetaObjectHandler {
         // 更新或创建updateTime
         this.updateDate(UPDATE_TIME, metaObject);
         this.updateUserName(UPDATE_BY, metaObject);
+        this.updateUserId(UPDATE_BY_ID, metaObject);
     }
 
     @Override
@@ -145,6 +151,16 @@ public class CustomizeMetaObjectHandler implements MetaObjectHandler {
         }
     }
 
+    // 创建管理员
+    public void insertUserId(String filedName, MetaObject metaObject) {
+        // 字段存在，值为空
+        if (this.isValue(filedName, metaObject)
+                && !ObjectUtils.isEmpty(getUserName())) {
+            this.strictInsertFill(metaObject, filedName, Long.class, getUserId());
+            this.strictInsertFill(metaObject, filedName, this::getUserName, String.class);
+        }
+    }
+
     // 更新管理员
     public void updateUserName(String filedName, MetaObject metaObject) {
         if (this.isValue(filedName, metaObject)
@@ -155,6 +171,19 @@ public class CustomizeMetaObjectHandler implements MetaObjectHandler {
             }
             this.strictUpdateFill(metaObject, filedName, String.class, getUserName());
             this.strictUpdateFill(metaObject, filedName, this::getUserName, String.class);
+        }
+    }
+
+    // 更新管理员
+    public void updateUserId(String filedName, MetaObject metaObject) {
+        if (this.isValue(filedName, metaObject)
+                && !ObjectUtils.isEmpty(getUserName())) {
+            Object fieldValByName = getFieldValByName(filedName, metaObject);
+            if (fieldValByName != null) {
+                this.setFieldValByName(filedName, getUserId(), metaObject);
+            }
+            this.strictUpdateFill(metaObject, filedName, Long.class, getUserId());
+            this.strictUpdateFill(metaObject, filedName, this::getUserId, Long.class);
         }
     }
 
@@ -177,5 +206,14 @@ public class CustomizeMetaObjectHandler implements MetaObjectHandler {
         } catch (Exception e) {
         }
         return userName;
+    }
+    // 获取管理员
+    public Long getUserId() {
+        Long userId = null;
+        try {
+            userId = 0L;
+        } catch (Exception e) {
+        }
+        return userId;
     }
 }

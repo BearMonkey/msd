@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class Task2 {
 
     @Async
-    @Scheduled(cron = "${cron.Task2:0 * * * * ?}")
+//    @Scheduled(cron = "${cron.Task2:0 * * * * ?}")
     public void run() {
         log.info("start Task2");
         try {
