@@ -13,5 +13,6 @@
         <module>security-parent</module>
         <module>deepseak-parent</module>
         <module>test-parent</module>
+        <module>cloud-parent</module>
     </modules>
 </project>
