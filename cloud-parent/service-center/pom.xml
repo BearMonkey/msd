@@ -9,13 +9,12 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>framework</artifactId>
+    <artifactId>service-center</artifactId>
     <packaging>pom</packaging>
+
     <modules>
-        <module>sys-api</module>
-        <module>gateway</module>
-        <module>auth</module>
-        <module>user</module>
+        <module>service-api</module>
+        <module>ServiceTest</module>
     </modules>
 
     <properties>

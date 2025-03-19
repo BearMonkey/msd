@@ -5,23 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.monkey</groupId>
-        <artifactId>cloud-parent</artifactId>
+        <artifactId>framework</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>framework</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>sys-api</module>
-        <module>gateway</module>
-        <module>auth</module>
-        <module>user</module>
-    </modules>
+    <artifactId>sys-api</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.monkey</groupId>
+            <artifactId>common-core</artifactId>
+            <version>${ver.self}</version>
+        </dependency>
+    </dependencies>
 
 </project>

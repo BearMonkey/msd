@@ -1,9 +1,11 @@
 server:
-  port: 8080
+  port: 9001
+  servlet:
+    context-path: /user
 
 spring:
   application:
-    name: gateway
+    name: user
   profiles:
     active: dev
   cloud:
@@ -16,26 +18,6 @@ spring:
         namespace: ${spring.cloud.nacos.discovery.namespace}
         group: DEFAULT_GROUP
         file-extension: yml
-    gateway:
-      routes:
-        - id: ServiceTest
-          uri: lb://ServiceTest
-          predicates:
-            - Path=/api/test/**
-          filters:
-            - StripPrefix=1
-
-        - id: user
-          uri: lb://user
-          predicates:
-            - Path=/api/user/**
-          filters:
-            - StripPrefix=1
-
-        - id: auth
-          uri: lb://auth
-          predicates:
-            - Path=/auth/**
   config:
     import:
       - optional:nacos:application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}

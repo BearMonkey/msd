@@ -154,10 +154,9 @@ public class CustomizeMetaObjectHandler implements MetaObjectHandler {
     // 创建管理员
     public void insertUserId(String filedName, MetaObject metaObject) {
         // 字段存在，值为空
-        if (this.isValue(filedName, metaObject)
-                && !ObjectUtils.isEmpty(getUserName())) {
+        if (this.isValue(filedName, metaObject) && !ObjectUtils.isNull(getUserId())) {
             this.strictInsertFill(metaObject, filedName, Long.class, getUserId());
-            this.strictInsertFill(metaObject, filedName, this::getUserName, String.class);
+            this.strictInsertFill(metaObject, filedName, this::getUserId, Long.class);
         }
     }
 
@@ -177,7 +176,7 @@ public class CustomizeMetaObjectHandler implements MetaObjectHandler {
     // 更新管理员
     public void updateUserId(String filedName, MetaObject metaObject) {
         if (this.isValue(filedName, metaObject)
-                && !ObjectUtils.isEmpty(getUserName())) {
+                && !ObjectUtils.isNull(getUserId())) {
             Object fieldValByName = getFieldValByName(filedName, metaObject);
             if (fieldValByName != null) {
                 this.setFieldValByName(filedName, getUserId(), metaObject);
@@ -211,7 +210,7 @@ public class CustomizeMetaObjectHandler implements MetaObjectHandler {
     public Long getUserId() {
         Long userId = null;
         try {
-            userId = 0L;
+            userId = 1L;
         } catch (Exception e) {
         }
         return userId;
