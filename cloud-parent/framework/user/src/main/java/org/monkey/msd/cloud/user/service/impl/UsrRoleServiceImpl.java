@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrRoleDto;
-import org.monkey.msd.cloud.user.pojo.UsrRole;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrRole;
 import org.monkey.msd.cloud.user.mapper.UsrRoleMapper;
 import org.monkey.msd.cloud.user.service.IUsrRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -44,5 +45,20 @@ public class UsrRoleServiceImpl extends ServiceImpl<UsrRoleMapper, UsrRole> impl
         LambdaQueryWrapper<UsrRole> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(StrUtil.isNotBlank(usrRoleDto.getRoleName()), UsrRole::getRoleName, usrRoleDto.getRoleName());
         return baseMapper.selectList(wrapper);
+    }
+
+    @Override
+    public List<UsrRole> selectRoleByRoleId(Set<Long> roleIdList) {
+        Assert.noNullElements(roleIdList, "角色id列表不能为空");
+        return baseMapper.selectRoleByRoleId(roleIdList);
+
+        /*List<UsrRoleDto> usrRoleDtoList = new ArrayList<>();
+        roleList.forEach(usrRole -> {
+            UsrRoleDto usrRoleDto = new UsrRoleDto();
+            BeanUtil.copyProperties(usrRole, usrRoleDto);
+            usrRoleDto.setAuthList(BeanUtil.copyToList(usrRole.getAuths(), UsrAuthDto.class));
+            usrRoleDtoList.add(usrRoleDto);
+        });
+        return usrRoleDtoList;*/
     }
 }

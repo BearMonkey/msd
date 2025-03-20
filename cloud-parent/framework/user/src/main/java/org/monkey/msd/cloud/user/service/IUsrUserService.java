@@ -1,7 +1,7 @@
 package org.monkey.msd.cloud.user.service;
 
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserDto;
-import org.monkey.msd.cloud.user.pojo.UsrUser;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -35,5 +35,12 @@ public interface IUsrUserService extends IService<UsrUser> {
      * @param usrUserDto UsrUserDto
      * @return List<UsrUser>
      */
-    List<UsrUser> listUsrUser(UsrUserDto usrUserDto);
+    List<UsrUserDto> listUsrUser(UsrUserDto usrUserDto);
+
+    /**
+     * 根据用户名查询用户
+     * @param username String
+     * @return List<UsrUser>
+     */
+    List<UsrUser> selectByUsername(String username);
 }

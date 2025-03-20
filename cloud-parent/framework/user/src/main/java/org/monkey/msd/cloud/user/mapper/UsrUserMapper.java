@@ -1,8 +1,11 @@
 package org.monkey.msd.cloud.user.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.monkey.msd.cloud.user.pojo.UsrUser;
+import org.apache.ibatis.annotations.Param;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 @Mapper
 public interface UsrUserMapper extends BaseMapper<UsrUser> {
 
+    List<UsrUser> selectByUsername(@Param("username") String username);
 }

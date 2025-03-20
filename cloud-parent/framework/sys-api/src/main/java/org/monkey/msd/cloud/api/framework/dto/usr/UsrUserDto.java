@@ -1,12 +1,12 @@
 package org.monkey.msd.cloud.api.framework.dto.usr;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +35,29 @@ public class UsrUserDto {
 
     @ApiModelProperty(value = "启用标识")
     private Boolean enabled;
+
+    @ApiModelProperty(value = "创建人")
+    private String createBy;
+
+    @ApiModelProperty(value = "创建人ID")
+    private String createById;
+
+    @ApiModelProperty(value = "创建时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
+
+    @ApiModelProperty(value = "修改人")
+    private String updateBy;
+
+    @ApiModelProperty(value = "修改人ID")
+    private String updateById;
+
+    @ApiModelProperty(value = "修改时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
+
+    @ApiModelProperty(value = "逻辑删除标识；1-已删除，0-未删除")
+    private Integer delFlag;
 
     @ApiModelProperty(value = "用户拥有的角色列表")
     private List<UsrRoleDto> roleList = new ArrayList<>();

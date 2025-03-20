@@ -3,6 +3,7 @@ package org.monkey.msd.cloud.user;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableDiscoveryClient
 @ComponentScan({"org.monkey.msd"})
+@EnableFeignClients(basePackages = "org.monkey.msd")
 public class UserApp {
     public static void main(String[] args) {
         SpringApplication.run(UserApp.class, args);

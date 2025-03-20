@@ -5,12 +5,10 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrAuthDto;
 import org.monkey.msd.cloud.common.dto.Result;
-import org.monkey.msd.cloud.user.pojo.UsrAuth;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrAuth;
 import org.monkey.msd.cloud.user.service.IUsrAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
 
 import java.util.List;
 

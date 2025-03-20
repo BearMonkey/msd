@@ -5,12 +5,10 @@ import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserDto;
 import org.monkey.msd.cloud.common.dto.Result;
-import org.monkey.msd.cloud.user.pojo.UsrUser;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrUser;
 import org.monkey.msd.cloud.user.service.IUsrUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
@@ -50,7 +48,12 @@ public class UsrUserController {
     }
 
     @PostMapping("/list")
-    public Result<List<UsrUser>> list(@RequestBody UsrUserDto usrUserDto) {
+    public Result<List<UsrUserDto>> list(@RequestBody UsrUserDto usrUserDto) {
         return Result.success(usrUserService.listUsrUser(usrUserDto));
+    }
+
+    @PostMapping("/selectByUsername")
+    public Result<List<UsrUser>> selectByUsername(@RequestParam("username") String username) {
+        return Result.success(usrUserService.selectByUsername(username));
     }
 }

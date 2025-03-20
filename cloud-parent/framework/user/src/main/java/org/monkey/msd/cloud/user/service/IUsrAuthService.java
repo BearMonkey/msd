@@ -1,8 +1,7 @@
 package org.monkey.msd.cloud.user.service;
 
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrAuthDto;
-import org.monkey.msd.cloud.common.dto.Result;
-import org.monkey.msd.cloud.user.pojo.UsrAuth;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrAuth;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;

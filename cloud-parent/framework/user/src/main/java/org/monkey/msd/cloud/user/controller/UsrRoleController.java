@@ -3,12 +3,10 @@ package org.monkey.msd.cloud.user.controller;
 
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrRoleDto;
 import org.monkey.msd.cloud.common.dto.Result;
-import org.monkey.msd.cloud.user.pojo.UsrRole;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrRole;
 import org.monkey.msd.cloud.user.service.IUsrRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
 
 import java.util.List;
 

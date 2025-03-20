@@ -8,6 +8,7 @@ import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * JwtUtil
@@ -20,7 +21,7 @@ public class JwtUtil {
     private static final long EXPIRATION = 86400000; // 24小时
 
 
-    public static String generateToken2Claims(String username, List<String> authorities) {
+    public static String generateToken2Claims(String username, Set<String> authorities) {
         SecretKey secretKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
         JwtBuilder builder = Jwts.builder()
                 .header()
@@ -66,7 +67,7 @@ public class JwtUtil {
     }
 
     public static void main(String[] args) {
-        String jwt = generateToken2Claims("monkey", List.of("admin"));
+        String jwt = generateToken2Claims("monkey", Set.of("admin"));
         System.out.println(jwt);
 
         Claims claims = parseToken2Claims(jwt);

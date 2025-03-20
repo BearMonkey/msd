@@ -1,11 +1,13 @@
-package org.monkey.msd.cloud.user.pojo;
+package org.monkey.msd.cloud.api.framework.pojo.usr;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -51,6 +53,10 @@ public class UsrUser extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "启用标识")
     @TableField("enabled")
     private Boolean enabled;
+
+    @ApiModelProperty(value = "权限列表")
+    @TableField(exist = false)
+    private List<UsrRole> roles = new ArrayList<>();
 
 
 }

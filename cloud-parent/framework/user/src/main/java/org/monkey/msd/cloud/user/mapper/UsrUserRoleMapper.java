@@ -1,7 +1,7 @@
 package org.monkey.msd.cloud.user.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.monkey.msd.cloud.user.pojo.UsrUserRole;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrUserRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

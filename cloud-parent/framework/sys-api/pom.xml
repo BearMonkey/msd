@@ -22,6 +22,10 @@
             <artifactId>common-core</artifactId>
             <version>${ver.self}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

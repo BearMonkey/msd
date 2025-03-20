@@ -4,7 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrAuthDto;
-import org.monkey.msd.cloud.user.pojo.UsrAuth;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrAuth;
 import org.monkey.msd.cloud.user.mapper.UsrAuthMapper;
 import org.monkey.msd.cloud.user.service.IUsrAuthService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

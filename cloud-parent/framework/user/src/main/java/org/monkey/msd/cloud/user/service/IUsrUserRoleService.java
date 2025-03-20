@@ -1,6 +1,7 @@
 package org.monkey.msd.cloud.user.service;
 
-import org.monkey.msd.cloud.user.pojo.UsrUserRole;
+import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserRoleDto;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrUserRole;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +14,17 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUsrUserRoleService extends IService<UsrUserRole> {
 
+    /**
+     * 增加用户角色关系
+     * @param usrUserRoleDto UsrUserRoleDto
+     * @return boolean
+     */
+    boolean addUserRole(UsrUserRoleDto usrUserRoleDto);
+
+    /**
+     * 删除用户角色关系
+     * @param id Long
+     * @return boolean
+     */
+    boolean delUserRole(Long id);
 }

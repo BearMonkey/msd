@@ -1,9 +1,8 @@
-package org.monkey.msd.cloud.user.pojo;
+package org.monkey.msd.cloud.api.framework.pojo.usr;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -15,7 +14,7 @@ import org.monkey.msd.cloud.common.pojo.BaseEntity;
 
 /**
  * <p>
- * 权限表
+ * 用户角色表
  * </p>
  *
  * @author cc
@@ -24,17 +23,21 @@ import org.monkey.msd.cloud.common.pojo.BaseEntity;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("usr_auth")
-@ApiModel(value="UsrAuth对象", description="权限表")
-public class UsrAuth extends BaseEntity implements Serializable {
+@TableName("usr_user_role")
+@ApiModel(value="UsrUserRole对象", description="用户角色表")
+public class UsrUserRole extends BaseEntity implements Serializable {
 
     @ApiModelProperty(value = "ID")
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @TableId(value = "id", type = IdType.NONE)
     private Long id;
 
-    @ApiModelProperty(value = "权限名称")
-    @TableField("auth_name")
-    private String authName;
+    @ApiModelProperty(value = "角色id")
+    @TableField("role_id")
+    private Long roleId;
+
+    @ApiModelProperty(value = "用户id")
+    @TableField("user_id")
+    private Long userId;
 
 
 }

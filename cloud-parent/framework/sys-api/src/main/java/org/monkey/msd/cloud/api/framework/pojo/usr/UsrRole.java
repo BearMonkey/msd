@@ -1,11 +1,12 @@
-package org.monkey.msd.cloud.user.pojo;
+package org.monkey.msd.cloud.api.framework.pojo.usr;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -36,5 +37,8 @@ public class UsrRole extends BaseEntity implements Serializable {
     @TableField("role_name")
     private String roleName;
 
+    @ApiModelProperty(value = "权限集合")
+    @TableField(exist = false)
+    private List<UsrAuth> auths;
 
 }

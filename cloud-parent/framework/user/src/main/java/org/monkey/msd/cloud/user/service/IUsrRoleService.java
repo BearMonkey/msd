@@ -1,10 +1,11 @@
 package org.monkey.msd.cloud.user.service;
 
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrRoleDto;
-import org.monkey.msd.cloud.user.pojo.UsrRole;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrRole;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -36,4 +37,11 @@ public interface IUsrRoleService extends IService<UsrRole> {
      * @return List<UsrRole>
      */
     List<UsrRole> listUsrAuth(UsrRoleDto usrRoleDto);
+
+    /**
+     * 根据角色id查询角色+权限
+     * @param roleIdList Set<Long>
+     * @return List<UsrRole>
+     */
+    List<UsrRole> selectRoleByRoleId(Set<Long> roleIdList);
 }

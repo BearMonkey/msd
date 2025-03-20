@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * UsrRoleDto
@@ -23,4 +24,7 @@ public class UsrRoleDto {
 
     @ApiModelProperty(value = "角色拥有的权限列表")
     private List<UsrAuthDto> authList = new ArrayList<>();
+
+    @ApiModelProperty(value = "角色列表")
+    private Set<Long> roleIdList;
 }

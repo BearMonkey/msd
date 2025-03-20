@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * UsrAuthDto
  *
@@ -18,4 +21,7 @@ public class UsrAuthDto {
 
     @ApiModelProperty(value = "权限名称")
     private String authName;
+
+    @ApiModelProperty(value = "权限ID列表")
+    private Set<Long> roleIdList;
 }

@@ -1,8 +1,12 @@
 package org.monkey.msd.cloud.user.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.monkey.msd.cloud.user.pojo.UsrRole;
+import org.apache.ibatis.annotations.Param;
+import org.monkey.msd.cloud.api.framework.pojo.usr.UsrRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * <p>
@@ -15,4 +19,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 @Mapper
 public interface UsrRoleMapper extends BaseMapper<UsrRole> {
 
+    List<UsrRole> selectRoleByRoleId(@Param("roleIdList") Set<Long> roleIdList);
 }

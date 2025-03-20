@@ -16,8 +16,13 @@ public class TestControllerTest {
     private TestController testController;
 
     @Test
-    public void future() {
+    public void future() throws InterruptedException {
         testController.future();
+    }
+
+    @Test
+    public void testStream() {
+
     }
 
 }
