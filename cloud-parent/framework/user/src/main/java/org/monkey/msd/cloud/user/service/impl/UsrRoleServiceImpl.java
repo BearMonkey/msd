@@ -49,16 +49,7 @@ public class UsrRoleServiceImpl extends ServiceImpl<UsrRoleMapper, UsrRole> impl
 
     @Override
     public List<UsrRole> selectRoleByRoleId(Set<Long> roleIdList) {
-        Assert.noNullElements(roleIdList, "角色id列表不能为空");
+        Assert.notEmpty(roleIdList, "角色id列表不能为空");
         return baseMapper.selectRoleByRoleId(roleIdList);
-
-        /*List<UsrRoleDto> usrRoleDtoList = new ArrayList<>();
-        roleList.forEach(usrRole -> {
-            UsrRoleDto usrRoleDto = new UsrRoleDto();
-            BeanUtil.copyProperties(usrRole, usrRoleDto);
-            usrRoleDto.setAuthList(BeanUtil.copyToList(usrRole.getAuths(), UsrAuthDto.class));
-            usrRoleDtoList.add(usrRoleDto);
-        });
-        return usrRoleDtoList;*/
     }
 }

@@ -61,4 +61,7 @@ public class UsrUserDto {
 
     @ApiModelProperty(value = "用户拥有的角色列表")
     private List<UsrRoleDto> roleList = new ArrayList<>();
+
+    @ApiModelProperty(value = "用户拥有的角色Id列表")
+    private List<Long> roleIdList = new ArrayList<>();
 }

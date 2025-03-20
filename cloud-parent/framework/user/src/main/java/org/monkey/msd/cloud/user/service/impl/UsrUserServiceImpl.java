@@ -4,15 +4,19 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import org.monkey.msd.cloud.api.framework.dto.usr.UsrRoleDto;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserDto;
+import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserRoleDto;
 import org.monkey.msd.cloud.api.framework.pojo.usr.UsrRole;
 import org.monkey.msd.cloud.api.framework.pojo.usr.UsrUser;
 import org.monkey.msd.cloud.user.mapper.UsrUserMapper;
 import org.monkey.msd.cloud.user.service.IUsrRoleService;
+import org.monkey.msd.cloud.user.service.IUsrUserRoleService;
 import org.monkey.msd.cloud.user.service.IUsrUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.*;
@@ -32,11 +36,57 @@ public class UsrUserServiceImpl extends ServiceImpl<UsrUserMapper, UsrUser> impl
     @Autowired
     private IUsrRoleService usrRoleService;
 
+    @Autowired
+    private IUsrUserRoleService usrUserRoleService;
+
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean addUser(UsrUserDto usrUserDto) {
+        Assert.notNull(usrUserDto, "参数不能为空");
+        List<Long> roleIdList = usrUserDto.getRoleIdList();
+        Assert.notEmpty(roleIdList, "角色ID列表不能为空");
+
+        // 校验用户存在
+        LambdaQueryWrapper<UsrUser> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(UsrUser::getUsername, usrUserDto.getUsername());
+        Long cnt = baseMapper.selectCount(wrapper);
+        if (cnt > 0) {
+            throw new RuntimeException("用户名已存在");
+        }
+
+        // 校验角色存在
+        List<UsrRole> usrRoles = usrRoleService.selectRoleByRoleId(new HashSet<>(roleIdList));
+        if (CollUtil.isEmpty(usrRoles)) {
+            throw new RuntimeException("角色不存在:" + roleIdList);
+        }
+        List<Long> notExistId = new ArrayList<>();
+        Map<Long, List<UsrRole>> roleIdMap = usrRoles.stream().collect(Collectors.groupingBy(UsrRole::getId));
+        roleIdList.forEach(roleId -> {
+            if (CollUtil.isEmpty(roleIdMap.get(roleId))) {
+                notExistId.add(roleId);
+            }
+        });
+        if (CollUtil.isNotEmpty(notExistId)) {
+            throw new RuntimeException("角色不存在:" + notExistId);
+        }
+
+        // 插入用户
         UsrUser usrUser = new UsrUser();
         BeanUtil.copyProperties(usrUserDto, usrUser);
-        return baseMapper.insert(usrUser) > 0;
+        boolean insertUser = baseMapper.insert(usrUser) > 0;
+        if (!insertUser) {
+            throw new RuntimeException("插入用户失败");
+        }
+
+        // 插入用户角色关系
+        UsrUserRoleDto userRoleDto = new UsrUserRoleDto();
+        userRoleDto.setUserId(usrUser.getId());
+        userRoleDto.setRoleIdList(roleIdList);
+        boolean insertUserRole = usrUserRoleService.addUserRole(userRoleDto);
+        if (!insertUserRole) {
+            throw new RuntimeException("插入用户角色失败");
+        }
+        return true;
     }
 
     @Override

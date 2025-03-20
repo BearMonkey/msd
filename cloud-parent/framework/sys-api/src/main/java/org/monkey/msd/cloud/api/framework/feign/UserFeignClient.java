@@ -19,6 +19,10 @@ import java.util.List;
  */
 @FeignClient(value = "user", path = "/user/usr-user", contextId = "userFeignClient")
 public interface UserFeignClient {
+
+    @PostMapping("/add")
+    Result<Boolean> addUser(@RequestBody UsrUserDto usrUserDto);
+
     @PostMapping("/list")
     Result<List<UsrUserDto>> list(@RequestBody UsrUserDto usrUserDto);
 
