@@ -22,3 +22,10 @@ spring:
     import:
       - optional:nacos:application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
       - optional:nacos:${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+
+  data:
+    redis:
+      database: 1
+      host: localhost
+      port: 6379
+      #password: msd123

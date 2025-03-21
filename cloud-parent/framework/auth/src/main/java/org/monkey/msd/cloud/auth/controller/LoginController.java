@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.monkey.msd.cloud.api.framework.dto.LoginDto;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserDto;
 import org.monkey.msd.cloud.api.framework.feign.UserFeignClient;
+import org.monkey.msd.cloud.auth.config.SysConfig;
 import org.monkey.msd.cloud.auth.dto.SecurityUser;
 import org.monkey.msd.cloud.auth.exception.AuthException;
 import org.monkey.msd.cloud.auth.service.impl.UserDetailServiceImpl;
@@ -13,13 +14,18 @@ import org.monkey.msd.cloud.common.constants.CommonResult;
 import org.monkey.msd.cloud.common.dto.Result;
 import org.monkey.msd.cloud.common.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * LoginController
@@ -41,6 +47,12 @@ public class LoginController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+    @Autowired
+    private SysConfig sysConfig;
+
     @PostMapping("/up")
     public Result<Boolean> regist(@RequestBody UsrUserDto userDto) {
         Assert.notNull(userDto, "请求参数不能为空");
@@ -57,10 +69,29 @@ public class LoginController {
 
     @PostMapping("/in")
     public Result<String> login(@RequestBody LoginDto loginDto) {
-        // 生成token
-        SecurityUser securityUser = userDetailService.loadUserByUsername(loginDto.getUsername());
-        log.info("login: {}", JSONObject.toJSONString(loginDto));
-        return Result.success(JwtUtil.generateToken2Claims(securityUser.getUsername(), securityUser.getAuthNames()));
+
+        if (loginDto == null || loginDto.getUsername() == null || loginDto.getPassword() == null) {
+            return Result.fail("用户名或密码不能为空");
+        }
+
+        try {
+            // 生成token
+            SecurityUser securityUser = userDetailService.loadUserByUsername(loginDto.getUsername());
+            log.info("login: {}", JSONObject.toJSONString(loginDto));
+
+            Map<String, Object> headerMap = new HashMap<>();
+            headerMap.put("username", securityUser.getUsername());
+            Map<String, Object> claimsMap = new HashMap<>();
+            claimsMap.put("auth", securityUser.getAuthNames());
+            String token = JwtUtil.generateToken2Claims(sysConfig.getSecret(), headerMap, claimsMap, sysConfig.getExpiration());
+
+            // token 存储到redis
+            redisTemplate.opsForValue().set("auth:token:" + securityUser.getUsername(), token, sysConfig.getExpiration(), TimeUnit.MILLISECONDS);
+            return Result.success(token);
+        } catch (Exception e) {
+            return Result.fail("登录失败!" + e.getMessage());
+        }
+
     }
 
     @PostMapping("/out")

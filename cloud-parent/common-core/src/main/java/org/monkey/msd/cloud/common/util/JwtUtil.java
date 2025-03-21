@@ -6,9 +6,7 @@ import io.jsonwebtoken.security.Keys;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * JwtUtil
@@ -21,25 +19,32 @@ public class JwtUtil {
     private static final long EXPIRATION = 86400000; // 24小时
 
 
-    public static String generateToken2Claims(String username, Set<String> authorities) {
-        SecretKey secretKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+    public static String generateToken2Claims(
+            String secret,
+            Map<String, Object> header,
+            Map<String, Object> claims,
+            long expiration) {
+        SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
         JwtBuilder builder = Jwts.builder()
                 .header()
-                .add("username", username)
+                .add(header)
                 .and()
-                .claim("auth", authorities)
+                .claims(claims)
                 .signWith(secretKey)
-                .expiration(new Date(System.currentTimeMillis() + EXPIRATION));
+                .expiration(new Date(System.currentTimeMillis() + expiration));
         return builder.compact();
     }
 
-    public static String generateToken2Payload(String username, List<String> authorities) {
-        SecretKey secretKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+    public static String generateToken2Payload(
+            String secret,
+            Map<String, Object> header,
+            String content) {
+        SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
         return Jwts.builder()
                 .header()
-                .add("username", username)
+                .add(header)
                 .and()
-                .content(JSONObject.toJSONString(authorities))
+                .content(content)
                 .signWith(secretKey)
 //                .expiration(new Date(System.currentTimeMillis() + EXPIRATION));
                 .compact();
@@ -67,14 +72,18 @@ public class JwtUtil {
     }
 
     public static void main(String[] args) {
-        String jwt = generateToken2Claims("monkey", Set.of("admin"));
+        Map<String, Object> headerMap = new HashMap<>();
+        headerMap.put("username", "monkey");
+        Map<String, Object> claimsMap = new HashMap<>();
+        claimsMap.put("auth", Set.of("admin"));
+        String jwt = generateToken2Claims(SECRET_KEY, headerMap, claimsMap, EXPIRATION);
         System.out.println(jwt);
 
         Claims claims = parseToken2Claims(jwt);
         List<?> list = claims.get("auth", List.class);
         System.out.println(list);
 
-        String jwt1 = generateToken2Payload("monkey", List.of("guest"));
+        String jwt1 = generateToken2Payload(SECRET_KEY, headerMap, JSONObject.toJSONString(List.of("guest")));
         System.out.println(jwt1);
 
         String payload = parseToken2Payload(jwt1);
