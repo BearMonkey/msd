@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>msd-common-redis</module>
+        <module>msd-common-zipkin</module>
     </modules>
 
     <properties>

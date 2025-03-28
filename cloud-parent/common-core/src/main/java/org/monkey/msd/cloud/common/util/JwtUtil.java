@@ -46,12 +46,11 @@ public class JwtUtil {
                 .and()
                 .content(content)
                 .signWith(secretKey)
-//                .expiration(new Date(System.currentTimeMillis() + EXPIRATION));
                 .compact();
     }
 
-    public static Claims parseToken2Claims(String token) {
-        SecretKey secretKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+    public static Claims parseToken2Claims(String token, String secret) {
+        SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
         return Jwts.parser()
                 .verifyWith(secretKey)
                 .build()
@@ -60,8 +59,8 @@ public class JwtUtil {
 
     }
 
-    public static String parseToken2Payload(String token) {
-        SecretKey secretKey = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+    public static String parseToken2Payload(String token, String secret) {
+        SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
         byte[] payload = Jwts.parser()
                 .verifyWith(secretKey)
                 .build()
@@ -69,6 +68,15 @@ public class JwtUtil {
                 .getPayload();
         return new String(payload, StandardCharsets.UTF_8);
 
+    }
+
+    public static boolean checkJwt(String token, String secret) {
+        try {
+            JwtUtil.parseToken2Claims(token, secret);
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            throw new RuntimeException("无效的JWT令牌");
+        }
     }
 
     public static void main(String[] args) {
@@ -79,14 +87,14 @@ public class JwtUtil {
         String jwt = generateToken2Claims(SECRET_KEY, headerMap, claimsMap, EXPIRATION);
         System.out.println(jwt);
 
-        Claims claims = parseToken2Claims(jwt);
+        Claims claims = parseToken2Claims(jwt, SECRET_KEY);
         List<?> list = claims.get("auth", List.class);
         System.out.println(list);
 
         String jwt1 = generateToken2Payload(SECRET_KEY, headerMap, JSONObject.toJSONString(List.of("guest")));
         System.out.println(jwt1);
 
-        String payload = parseToken2Payload(jwt1);
+        String payload = parseToken2Payload(jwt1, SECRET_KEY);
         System.out.println(payload);
     }
 }

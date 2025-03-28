@@ -46,6 +46,11 @@
             <artifactId>sys-api</artifactId>
             <version>${ver.self}</version>
         </dependency>
+        <dependency>
+            <groupId>org.monkey</groupId>
+            <artifactId>msd-common-zipkin</artifactId>
+            <version>${ver.self}</version>
+        </dependency>
     </dependencies>
 
 </project>

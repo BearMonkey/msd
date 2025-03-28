@@ -1,0 +1,16 @@
+logging:
+  file:
+    path: /monkey/msd-cloud/logs
+
+spring:
+  data:
+    redis:
+      database: 1
+      host: localhost
+      port: 6379
+  zipkin:
+    base-url: http://localhost:9411 # Zipkin 服务地址
+  sleuth:
+    enabled: true # 启用 Sleuth 兼容模式
+    sampler:
+      probability: 1.0 # 采样率 100%

@@ -3,14 +3,11 @@ package org.monkey.msd.cloud.auth.service.impl;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.monkey.msd.cloud.api.framework.dto.usr.UsrAuthDto;
-import org.monkey.msd.cloud.api.framework.dto.usr.UsrRoleDto;
-import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserDto;
 import org.monkey.msd.cloud.api.framework.feign.UserFeignClient;
 import org.monkey.msd.cloud.api.framework.pojo.usr.UsrAuth;
 import org.monkey.msd.cloud.api.framework.pojo.usr.UsrRole;
 import org.monkey.msd.cloud.api.framework.pojo.usr.UsrUser;
-import org.monkey.msd.cloud.auth.dto.SecurityUser;
+import org.monkey.msd.cloud.api.framework.dto.SecurityUser;
 import org.monkey.msd.cloud.auth.exception.AuthException;
 import org.monkey.msd.cloud.common.constants.CommonResult;
 import org.monkey.msd.cloud.common.dto.Result;
@@ -55,7 +52,10 @@ public class UserDetailServiceImpl implements UserDetailsService {
         log.info("查询用户:{}", usrUser);
 
         SecurityUser securityUser = new SecurityUser();
-        securityUser.setUsrUser(usrUser);
+        securityUser.setId(usrUser.getId());
+        securityUser.setUsername(usrUser.getUsername());
+        securityUser.setPassword(usrUser.getPassword());
+        securityUser.setEnabled(usrUser.getEnabled());
         List<UsrRole> roles = usrUser.getRoles();
 
         List<UsrAuth> auths = new ArrayList<>();

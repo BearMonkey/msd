@@ -1,13 +1,15 @@
 package org.monkey.msd.cloud.auth.controller;
 
 import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.monkey.msd.cloud.api.framework.dto.LoginDto;
+import org.monkey.msd.cloud.api.framework.dto.LoginUser;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserDto;
 import org.monkey.msd.cloud.api.framework.feign.UserFeignClient;
 import org.monkey.msd.cloud.auth.config.SysConfig;
-import org.monkey.msd.cloud.auth.dto.SecurityUser;
+import org.monkey.msd.cloud.api.framework.dto.SecurityUser;
 import org.monkey.msd.cloud.auth.exception.AuthException;
 import org.monkey.msd.cloud.auth.service.impl.UserDetailServiceImpl;
 import org.monkey.msd.cloud.common.constants.CommonResult;
@@ -22,9 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -69,24 +69,28 @@ public class LoginController {
 
     @PostMapping("/in")
     public Result<String> login(@RequestBody LoginDto loginDto) {
-
-        if (loginDto == null || loginDto.getUsername() == null || loginDto.getPassword() == null) {
+        log.info("login: {}", JSONObject.toJSONString(loginDto));
+        if (loginDto == null || StrUtil.isBlank(loginDto.getUsername()) || StrUtil.isBlank(loginDto.getPassword())) {
             return Result.fail("用户名或密码不能为空");
         }
 
         try {
             // 生成token
             SecurityUser securityUser = userDetailService.loadUserByUsername(loginDto.getUsername());
-            log.info("login: {}", JSONObject.toJSONString(loginDto));
+            log.info("securityUser: {}", JSONObject.toJSONString(securityUser));
 
+            LoginUser loginUser = new LoginUser();
+            String username = securityUser.getUsername();
+            loginUser.setAuthNames(securityUser.getAuthNames());
+            loginUser.setUsername(username);
             Map<String, Object> headerMap = new HashMap<>();
-            headerMap.put("username", securityUser.getUsername());
+            headerMap.put("username", username);
             Map<String, Object> claimsMap = new HashMap<>();
-            claimsMap.put("auth", securityUser.getAuthNames());
+            claimsMap.put("securityUser", JSONObject.toJSONString(securityUser));
             String token = JwtUtil.generateToken2Claims(sysConfig.getSecret(), headerMap, claimsMap, sysConfig.getExpiration());
 
             // token 存储到redis
-            redisTemplate.opsForValue().set("auth:token:" + securityUser.getUsername(), token, sysConfig.getExpiration(), TimeUnit.MILLISECONDS);
+            redisTemplate.opsForValue().set("auth:token:" + username, token, sysConfig.getExpiration(), TimeUnit.MILLISECONDS);
             return Result.success(token);
         } catch (Exception e) {
             return Result.fail("登录失败!" + e.getMessage());

@@ -1,8 +1,6 @@
-package org.monkey.msd.cloud.auth.dto;
+package org.monkey.msd.cloud.api.framework.dto;
 
 import lombok.Data;
-import org.monkey.msd.cloud.api.framework.dto.usr.UsrAuthDto;
-import org.monkey.msd.cloud.api.framework.dto.usr.UsrRoleDto;
 import org.monkey.msd.cloud.api.framework.pojo.usr.UsrAuth;
 import org.monkey.msd.cloud.api.framework.pojo.usr.UsrRole;
 import org.monkey.msd.cloud.api.framework.pojo.usr.UsrUser;
@@ -10,10 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * SecurityUser
@@ -24,29 +19,31 @@ import java.util.Set;
 @Data
 public class SecurityUser implements UserDetails {
 
-    private UsrUser usrUser;
+    private Long id;
 
-    private List<UsrRole> roles;
+    private String username;
 
-    private List<UsrAuth> auths;
+    private String password;
+
+    private boolean enabled;
 
     private Set<String> authNames;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        ArrayList<SimpleGrantedAuthority> authorities = new ArrayList<>();
+    public Set<SimpleGrantedAuthority> getAuthorities() {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         authNames.forEach(authorityName->authorities.add(new SimpleGrantedAuthority(authorityName)));
         return authorities;
     }
 
     @Override
     public String getPassword() {
-        return this.usrUser.getPassword();
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return this.usrUser.getUsername();
+        return this.username;
     }
 
     @Override
@@ -66,6 +63,6 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return usrUser.getEnabled();
+        return this.enabled;
     }
 }
