@@ -20,7 +20,33 @@ spring:
     import:
       - optional:nacos:application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
       - optional:nacos:${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
-      - optional:nacos:logback-spring-nacos.xml
+#      - optional:nacos:logback-spring-nacos.xml
+#  zipkin:
+#    # Zipkin 服务地址
+#    base-url: http://127.0.0.1:9411/
+#  sleuth:
+#    # 启用 Sleuth 兼容模式
+#    enabled: true
+#    sampler:
+#      # 采样率 100%
+#      probability: 1.0
+
+management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0  # 采样率100%
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+
+## 可选：Brave 特定配置
+#brave:
+#  service:
+#    n 服务名（默认已由management.zipkin.service-name覆盖）
+#  propagation:
+#    type: B3  # 上下文传播类型（B3、W3C等）
+
 #spring:
 #  main:
 #    allow-circular-references: true
