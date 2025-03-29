@@ -12,4 +12,16 @@ import lombok.Data;
 public class LoginDto {
     private String username;
     private String password;
+
+    private String phone;
+    private String code;
+
+    private String email;
+
+    private String wechatOpenId;
+
+    private int loginType;
+    private boolean success;
+    private String token;
+    private String errMsg;
 }

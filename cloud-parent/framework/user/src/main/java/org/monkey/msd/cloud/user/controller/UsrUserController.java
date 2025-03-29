@@ -56,4 +56,9 @@ public class UsrUserController {
     public Result<List<UsrUser>> selectByUsername(@RequestParam("username") String username) {
         return Result.success(usrUserService.selectByUsername(username));
     }
+
+    @GetMapping("/selectUsernameBy")
+    public Result<String> selectUsernameBy(@RequestParam("type")Integer type, @RequestParam("val") String val) {
+        return Result.success(usrUserService.selectUsernameBy(type, val));
+    }
 }

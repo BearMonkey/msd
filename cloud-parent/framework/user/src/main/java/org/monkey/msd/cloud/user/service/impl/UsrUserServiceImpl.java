@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import org.monkey.msd.cloud.api.framework.LoginTypeEnums;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrRoleDto;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserDto;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserRoleDto;
@@ -130,5 +131,18 @@ public class UsrUserServiceImpl extends ServiceImpl<UsrUserMapper, UsrUser> impl
 
         usrUser.setRoles(roleList);
         return Collections.singletonList(usrUser);
+    }
+
+    @Override
+    public String selectUsernameBy(Integer type, String val) {
+        LambdaQueryWrapper<UsrUser> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(type.equals(LoginTypeEnums.PHONE.getCode()), UsrUser::getMobile, val);
+        wrapper.eq(type.equals(LoginTypeEnums.EMAIL.getCode()), UsrUser::getEmail, val);
+//        wrapper.eq(type.equals(LoginTypeEnums.WECHAT.getCode()), UsrUser::getId, val);
+        List<UsrUser> usrUsers = baseMapper.selectList(wrapper);
+        if (CollUtil.isEmpty(usrUsers) || usrUsers.size() > 1) {
+            return null;
+        }
+        return usrUsers.get(0).getUsername();
     }
 }

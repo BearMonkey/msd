@@ -18,7 +18,7 @@ spring:
         file-extension: yml
     gateway:
 #      default-filters:
-#        - name: JwtAuth
+#        - name: RequestLog
       routes:
         - id: ServiceTest
           uri: lb://ServiceTest

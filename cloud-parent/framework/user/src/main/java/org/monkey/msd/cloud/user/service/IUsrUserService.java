@@ -43,4 +43,12 @@ public interface IUsrUserService extends IService<UsrUser> {
      * @return List<UsrUser>
      */
     List<UsrUser> selectByUsername(String username);
+
+    /**
+     * 查询用户名，根据phone、email、openId
+     * @param type 1 2 3
+     * @param val phone、email、openId
+     * @return 用户名或者null
+     */
+    String selectUsernameBy(Integer type, String val);
 }

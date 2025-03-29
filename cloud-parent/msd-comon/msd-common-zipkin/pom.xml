@@ -34,10 +34,10 @@
         </dependency>
 
         <!-- 可选：HTTP 发送器（默认使用 URLConnection） -->
-        <dependency>
+        <!-- <dependency>
             <groupId>io.zipkin.reporter2</groupId>
             <artifactId>zipkin-sender-urlconnection</artifactId>
-        </dependency>
+        </dependency>-->
         <!-- Actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

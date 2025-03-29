@@ -5,6 +5,7 @@ import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserDto;
 import org.monkey.msd.cloud.api.framework.pojo.usr.UsrUser;
 import org.monkey.msd.cloud.common.dto.Result;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,4 +29,7 @@ public interface UserFeignClient {
 
     @PostMapping("/selectByUsername")
     Result<List<UsrUser>> selectByUsername(@RequestParam("username") String username);
+
+    @GetMapping("/selectUsernameBy")
+    Result<String> selectUsernameBy(@RequestParam("type")Integer type, @RequestParam("val") String val);
 }

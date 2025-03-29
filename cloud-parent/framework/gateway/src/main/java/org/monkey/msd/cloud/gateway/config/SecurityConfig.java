@@ -42,7 +42,7 @@ public class SecurityConfig {
                         .pathMatchers("/api/**").authenticated()
                         .anyExchange().authenticated()
                 )
-                .addFilterAt(new JwtAuthWebFilter(redisTemplate), SecurityWebFiltersOrder.AUTHENTICATION)
+//                .addFilterAt(new JwtAuthWebFilter(redisTemplate), SecurityWebFiltersOrder.AUTHENTICATION)
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .build();
