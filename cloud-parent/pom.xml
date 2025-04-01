@@ -57,6 +57,11 @@
         <druid.version>1.1.21</druid.version>
 
         <jjwt.version>0.12.6</jjwt.version>
+
+        <!-- Micrometer Tracing + Brave -->
+        <micrometer-tracing.version>1.2.0</micrometer-tracing.version>
+
+        <feign-micrometer.version>12.5</feign-micrometer.version>
     </properties>
 
     <dependencyManagement>
@@ -89,7 +94,7 @@
             <dependency>
                 <groupId>io.micrometer</groupId>
                 <artifactId>micrometer-tracing-bom</artifactId>
-                <version>1.0.0</version> <!-- 版本需与 Spring Boot 3.0.2 兼容 -->
+                <version>${micrometer-tracing.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -14,5 +14,6 @@
         <module>deepseak-parent</module>
         <module>test-parent</module>
         <module>cloud-parent</module>
+        <module>tracing-parent</module>
     </modules>
 </project>

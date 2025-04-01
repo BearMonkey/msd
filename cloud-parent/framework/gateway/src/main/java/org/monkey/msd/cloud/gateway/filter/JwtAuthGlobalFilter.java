@@ -10,6 +10,7 @@ import org.monkey.msd.cloud.common.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
@@ -28,8 +29,9 @@ import reactor.core.publisher.Mono;
  * @author cc
  * @since 2025/3/29 15:02
  */
-@Component
-@Order(0)
+@Deprecated
+//@Component
+//@Order(Ordered.HIGHEST_PRECEDENCE)
 @Slf4j
 public class JwtAuthGlobalFilter implements GlobalFilter {
 

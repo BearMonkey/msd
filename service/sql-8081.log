@@ -1,0 +1,31 @@
+2025-04-01 09:54:43,746 INFO  2476 [,] [main] o.m.m.t.s.TracingSeriviceApp.java:51 - Starting TracingSeriviceApp using Java 17.0.14 with PID 2476 (E:\dev\code\msd\tracing-parent\tracing-service\target\classes started by cc in E:\dev\code\msd)
+2025-04-01 09:54:43,747 INFO  2476 [,] [main] o.m.m.t.s.TracingSeriviceApp.java:630 - No active profile set, falling back to 1 default profile: "default"
+2025-04-01 09:54:44,646 INFO  2476 [,] [main] o.s.b.w.e.t.TomcatWebServer.java:108 - Tomcat initialized with port(s): 8081 (http)
+2025-04-01 09:54:44,662 INFO  2476 [,] [main] o.a.c.h.Http11NioProtocol.java:173 - Initializing ProtocolHandler ["http-nio-8081"]
+2025-04-01 09:54:44,662 INFO  2476 [,] [main] o.a.c.c.StandardService.java:173 - Starting service [Tomcat]
+2025-04-01 09:54:44,663 INFO  2476 [,] [main] o.a.c.c.StandardEngine.java:173 - Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-04-01 09:54:44,740 INFO  2476 [,] [main] o.a.c.c.C.[.[.[/service].java:173 - Initializing Spring embedded WebApplicationContext
+2025-04-01 09:54:44,740 INFO  2476 [,] [main] o.s.b.w.s.c.ServletWebServerApplicationContext.java:291 - Root WebApplicationContext: initialization completed in 967 ms
+2025-04-01 09:54:45,153 INFO  2476 [,] [main] o.s.b.a.e.w.EndpointLinksResolver.java:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-04-01 09:54:45,177 INFO  2476 [,] [main] o.a.c.h.Http11NioProtocol.java:173 - Starting ProtocolHandler ["http-nio-8081"]
+2025-04-01 09:54:45,189 INFO  2476 [,] [main] o.s.b.w.e.t.TomcatWebServer.java:220 - Tomcat started on port(s): 8081 (http) with context path '/service'
+2025-04-01 09:54:45,199 INFO  2476 [,] [main] o.m.m.t.s.TracingSeriviceApp.java:57 - Started TracingSeriviceApp in 2.039 seconds (process running for 2.607)
+2025-04-01 09:54:45,384 INFO  2476 [,] [RMI TCP Connection(2)-192.168.100.161] o.a.c.c.C.[.[.[/service].java:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-01 09:54:45,387 INFO  2476 [,] [RMI TCP Connection(2)-192.168.100.161] o.s.w.s.DispatcherServlet.java:532 - Initializing Servlet 'dispatcherServlet'
+2025-04-01 09:54:45,390 INFO  2476 [,] [RMI TCP Connection(2)-192.168.100.161] o.s.w.s.DispatcherServlet.java:554 - Completed initialization in 2 ms
+2025-04-01 09:54:59,624 INFO  2476 [67eb4773b86bbdd98a8794f369bc218c,8a8794f369bc218c] [http-nio-8081-exec-1] o.m.m.t.s.c.SrvTestController.java:21 - srv test===================
+2025-04-01 09:57:12,880 INFO  23736 [,] [main] o.m.m.t.s.TracingSeriviceApp.java:51 - Starting TracingSeriviceApp using Java 17.0.14 with PID 23736 (E:\dev\code\msd\tracing-parent\tracing-service\target\classes started by cc in E:\dev\code\msd)
+2025-04-01 09:57:12,884 INFO  23736 [,] [main] o.m.m.t.s.TracingSeriviceApp.java:630 - No active profile set, falling back to 1 default profile: "default"
+2025-04-01 09:57:13,656 INFO  23736 [,] [main] o.s.b.w.e.t.TomcatWebServer.java:108 - Tomcat initialized with port(s): 8081 (http)
+2025-04-01 09:57:13,662 INFO  23736 [,] [main] o.a.c.h.Http11NioProtocol.java:173 - Initializing ProtocolHandler ["http-nio-8081"]
+2025-04-01 09:57:13,663 INFO  23736 [,] [main] o.a.c.c.StandardService.java:173 - Starting service [Tomcat]
+2025-04-01 09:57:13,663 INFO  23736 [,] [main] o.a.c.c.StandardEngine.java:173 - Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-04-01 09:57:13,714 INFO  23736 [,] [main] o.a.c.c.C.[.[.[/service].java:173 - Initializing Spring embedded WebApplicationContext
+2025-04-01 09:57:13,715 INFO  23736 [,] [main] o.s.b.w.s.c.ServletWebServerApplicationContext.java:291 - Root WebApplicationContext: initialization completed in 802 ms
+2025-04-01 09:57:14,091 INFO  23736 [,] [main] o.s.b.a.e.w.EndpointLinksResolver.java:58 - Exposing 1 endpoint(s) beneath base path '/actuator'
+2025-04-01 09:57:14,117 INFO  23736 [,] [main] o.a.c.h.Http11NioProtocol.java:173 - Starting ProtocolHandler ["http-nio-8081"]
+2025-04-01 09:57:14,131 INFO  23736 [,] [main] o.s.b.w.e.t.TomcatWebServer.java:220 - Tomcat started on port(s): 8081 (http) with context path '/service'
+2025-04-01 09:57:14,141 INFO  23736 [,] [main] o.m.m.t.s.TracingSeriviceApp.java:57 - Started TracingSeriviceApp in 1.661 seconds (process running for 2.006)
+2025-04-01 09:57:14,470 INFO  23736 [,] [RMI TCP Connection(2)-192.168.100.161] o.a.c.c.C.[.[.[/service].java:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-01 09:57:14,470 INFO  23736 [,] [RMI TCP Connection(2)-192.168.100.161] o.s.w.s.DispatcherServlet.java:532 - Initializing Servlet 'dispatcherServlet'
+2025-04-01 09:57:14,471 INFO  23736 [,] [RMI TCP Connection(2)-192.168.100.161] o.s.w.s.DispatcherServlet.java:554 - Completed initialization in 1 ms

@@ -2,6 +2,7 @@ package org.monkey.msd.cloud.auth.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.monkey.msd.cloud.api.framework.LoginTypeEnums;
 import org.monkey.msd.cloud.api.framework.dto.LoginDto;
@@ -114,7 +115,7 @@ public class LoginServiceImpl implements ILoginService {
         try {
             // 生成token
             String token = this.handleToken(username);
-            result.setSuccess(false);
+            result.setSuccess(true);
             result.setToken(token);
         } catch (Exception e) {
             result.setErrMsg(e.getMessage());
@@ -124,14 +125,13 @@ public class LoginServiceImpl implements ILoginService {
     private String handleToken(String username) {
         SecurityUser securityUser = userDetailService.loadUserByUsername(username);
         log.info("securityUser: {}", JSONObject.toJSONString(securityUser));
-
         LoginUser loginUser = new LoginUser();
         loginUser.setAuthNames(securityUser.getAuthNames());
         loginUser.setUsername(username);
+
         Map<String, Object> headerMap = new HashMap<>();
         headerMap.put("username", username);
-        Map<String, Object> claimsMap = new HashMap<>();
-        claimsMap.put("securityUser", JSONObject.toJSONString(securityUser));
+        Map<String, Object> claimsMap = JSON.parseObject(JSON.toJSONString(loginUser));
         String token = JwtUtil.generateToken2Claims(sysConfig.getSecret(), headerMap, claimsMap, sysConfig.getExpiration());
 
         // token 存储到redis
@@ -152,6 +152,12 @@ public class LoginServiceImpl implements ILoginService {
             return false;
         }
         String cacheToken = redisTemplate.opsForValue().get(LoginConstants.AUTH_TOKEN_PREFIX + username);
+        if (StrUtil.isBlank(cacheToken)) {
+            return false;
+        }
+        result.setUsername(username);
+        result.setToken(cacheToken);
+        result.setSuccess(true);
         return JwtUtil.checkJwt(cacheToken, sysConfig.getSecret());
     }
 }

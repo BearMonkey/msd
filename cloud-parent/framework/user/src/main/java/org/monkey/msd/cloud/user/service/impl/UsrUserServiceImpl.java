@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.monkey.msd.cloud.api.framework.LoginTypeEnums;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrRoleDto;
 import org.monkey.msd.cloud.api.framework.dto.usr.UsrUserDto;
@@ -32,6 +33,7 @@ import java.util.stream.Collectors;
  * @since 2025-03-18
  */
 @Service
+@Slf4j
 public class UsrUserServiceImpl extends ServiceImpl<UsrUserMapper, UsrUser> implements IUsrUserService {
 
     @Autowired
@@ -135,6 +137,7 @@ public class UsrUserServiceImpl extends ServiceImpl<UsrUserMapper, UsrUser> impl
 
     @Override
     public String selectUsernameBy(Integer type, String val) {
+        log.info("selectUsernameBy type:{}, val:{}", type, val);
         LambdaQueryWrapper<UsrUser> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(type.equals(LoginTypeEnums.PHONE.getCode()), UsrUser::getMobile, val);
         wrapper.eq(type.equals(LoginTypeEnums.EMAIL.getCode()), UsrUser::getEmail, val);
@@ -143,6 +146,8 @@ public class UsrUserServiceImpl extends ServiceImpl<UsrUserMapper, UsrUser> impl
         if (CollUtil.isEmpty(usrUsers) || usrUsers.size() > 1) {
             return null;
         }
-        return usrUsers.get(0).getUsername();
+        String username = usrUsers.get(0).getUsername();
+        log.info("selectUsernameBy type:{}, val:{}, username={}", type, val, username);
+        return username;
     }
 }

@@ -20,4 +20,9 @@ public class TestCotroller {
         log.info("test 服务test请求");
         return Result.success("hello");
     }
+
+    @RequestMapping("/index.html")
+    public Result<String> index() {
+        return Result.success("index");
+    }
 }

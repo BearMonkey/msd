@@ -13,7 +13,7 @@ import org.monkey.msd.cloud.common.constants.CommonResult;
 public class Result<T> {
 
     /** 统一请求id */
-    private String requestId;
+    private String traceId;
 
     /** 返回码 */
     private String code;

@@ -2,6 +2,8 @@ package org.monkey.msd.cloud.auth.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.monkey.msd.cloud.api.framework.feign.UserFeignClient;
 import org.monkey.msd.cloud.api.framework.pojo.usr.UsrAuth;
@@ -49,7 +51,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("用户不存在");
         }
         UsrUser usrUser = usrUserDtoList.get(0);
-        log.info("查询用户:{}", usrUser);
+        log.info("查询用户:{}", JSON.toJSONString(usrUser));
 
         SecurityUser securityUser = new SecurityUser();
         securityUser.setId(usrUser.getId());

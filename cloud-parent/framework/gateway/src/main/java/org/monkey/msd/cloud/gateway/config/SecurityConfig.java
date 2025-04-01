@@ -1,25 +1,21 @@
 package org.monkey.msd.cloud.gateway.config;
 
-import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
-import org.monkey.msd.cloud.common.util.JwtUtil;
-import org.monkey.msd.cloud.gateway.filter.JwtAuthWebFilter;
+import org.monkey.msd.cloud.gateway.provider.JwtAuthenticationProvider;
+import org.monkey.msd.cloud.gateway.provider.ServerHttpBearerAuthenticationConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.gateway.filter.GatewayFilterChain;
-import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.ReactiveAuthenticationManager;
+import org.springframework.security.authentication.ReactiveAuthenticationManagerAdapter;
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
-import org.springframework.web.server.ServerWebExchange;
-import reactor.core.publisher.Mono;
-
-import java.util.List;
+import org.springframework.security.web.server.authentication.AuthenticationWebFilter;
+import org.springframework.security.web.server.authentication.ServerAuthenticationConverter;
 
 /**
  * SecurityConfig
@@ -31,20 +27,34 @@ import java.util.List;
 @Slf4j
 public class SecurityConfig {
 
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
     @Bean
-    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http, AuthenticationWebFilter jwtAuthFilter) {
         return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
+                .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/auth/**").permitAll()
+                        .pathMatchers("/api/test/index.html").permitAll()
                         .pathMatchers("/api/**").authenticated()
                         .anyExchange().authenticated()
                 )
-//                .addFilterAt(new JwtAuthWebFilter(redisTemplate), SecurityWebFiltersOrder.AUTHENTICATION)
-                .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
-                .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
+                .addFilterAt(jwtAuthFilter, SecurityWebFiltersOrder.AUTHENTICATION)
                 .build();
+    }
+
+    @Bean
+    public AuthenticationWebFilter jwtAuthenticationWebFilter(JwtAuthenticationProvider jwtProvider) {
+        log.info("jwtAuthenticationWebFilter 111111111111");
+        ReactiveAuthenticationManager authManager = new ReactiveAuthenticationManagerAdapter(new ProviderManager(jwtProvider));
+        ServerAuthenticationConverter authConverter = new ServerHttpBearerAuthenticationConverter();
+
+        AuthenticationWebFilter jwtAuthFilter = new AuthenticationWebFilter(authManager);
+        jwtAuthFilter.setServerAuthenticationConverter(authConverter);
+        jwtAuthFilter.setAuthenticationSuccessHandler((webFilterExchange, authentication) ->
+                webFilterExchange.getChain().filter(webFilterExchange.getExchange())
+                        .contextWrite(ReactiveSecurityContextHolder.withAuthentication(authentication))
+        );
+        return jwtAuthFilter;
     }
 }

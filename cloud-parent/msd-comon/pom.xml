@@ -14,6 +14,7 @@
     <modules>
         <module>msd-common-redis</module>
         <module>msd-common-zipkin</module>
+        <module>msd-common-exception-starter</module>
     </modules>
 
     <properties>

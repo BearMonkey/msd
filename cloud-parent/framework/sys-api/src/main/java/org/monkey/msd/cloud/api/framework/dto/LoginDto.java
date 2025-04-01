@@ -21,7 +21,7 @@ public class LoginDto {
     private String wechatOpenId;
 
     private int loginType;
-    private boolean success;
+    private Boolean success;
     private String token;
     private String errMsg;
 }

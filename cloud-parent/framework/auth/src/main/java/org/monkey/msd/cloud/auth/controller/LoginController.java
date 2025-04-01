@@ -63,13 +63,13 @@ public class LoginController {
     }
 
     @PostMapping("/in")
-    public Result<LoginDto> login(@RequestBody LoginDto loginDto) {
+    public Result<String> login(@RequestBody LoginDto loginDto) {
         log.info("login: {}", JSONObject.toJSONString(loginDto));
         LoginDto result = loginService.login(loginDto);
-        if (result.isSuccess()) {
-            return Result.success("登录成功", result);
+        if (result.getSuccess()) {
+            return Result.success("登录成功", result.getToken());
         } else {
-            return Result.fail(result.getErrMsg(), result);
+            return Result.fail(result.getErrMsg(), null);
         }
     }
 

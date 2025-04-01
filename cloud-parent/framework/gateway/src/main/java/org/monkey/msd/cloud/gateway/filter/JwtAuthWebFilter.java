@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.ParserConfig;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
-import org.monkey.msd.cloud.api.framework.dto.LoginUser;
 import org.monkey.msd.cloud.api.framework.dto.SecurityUser;
 import org.monkey.msd.cloud.common.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,6 @@ package org.monkey.msd.cloud.api.framework.dto;
 
 import lombok.Data;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,6 +13,5 @@ import java.util.Set;
 @Data
 public class LoginUser {
     private String username;
-    private String password;
     private Set<String> authNames;
 }

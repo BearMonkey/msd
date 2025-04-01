@@ -20,7 +20,7 @@ import java.util.Map;
  * @since 2025/3/29 14:46
  */
 @Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(0)
 @Slf4j
 public class RequestLogGlobalFilter implements GlobalFilter {
     @Override
