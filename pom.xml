@@ -15,5 +15,6 @@
         <module>test-parent</module>
         <module>cloud-parent</module>
         <module>tracing-parent</module>
+        <module>oauth2-parent</module>
     </modules>
 </project>

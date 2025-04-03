@@ -1,0 +1,96 @@
+server:
+  port: 8080
+#
+#spring:
+#  application:
+#    name: Oauth2Client
+#  profiles:
+#    active: dev
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          gitee:
+#            client-id: ad010f06b3f440b33dfa6f499f27477d1747e532fd3fd0a2f28030f3f31b6ab6
+#            client-secret: 5751182aba6c6a57c0b7267ae1259aba4357395b2a0dbca42368ffdef1f463b1
+#            authorization-grant-type: authorization_code
+#            redirect-uri: '{baseUrl}/{action}/oauth2/code/{registrationId}'
+#            client-name: gitee
+#            provider: gitee
+#            scope:
+#              - user_info
+#        provider:
+#          gitee:
+#            authorization-uri: https://gitee.com/oauth/authorize
+#            token-uri: https://gitee.com/oauth/token
+#            user-info-uri: https://gitee.com/api/v5/user
+#            user-name-attribute: id
+
+spring:
+  application:
+    name: Oauth2Client
+  profiles:
+    active: dev
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          github:
+#            client-id: Iv23likzANIcZ9Ic95X8
+#            client-secret: 7af60610602c74368020230ea6eb0f2469601693
+#            authorization-grant-type: authorization_code
+#            redirect-uri: '{baseUrl}/{action}/oauth2/code/{registrationId}'
+#            client-name: gitee
+#            provider: gitee
+#            scope:
+#              - user_info
+#        provider:
+#          github:
+#            authorization-uri: https://gitee.com/oauth/authorize
+#            token-uri: https://gitee.com/oauth/token
+#            user-info-uri: https://gitee.com/api/v5/user
+#            user-name-attribute: id
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: ${nacos.host:localhost}:${nacos.port:8848}
+#        namespace: ${nacos.namespace:69dba6d6-2196-4612-a295-1e9dc516bde9}
+#      config:
+#        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+#        namespace: ${spring.cloud.nacos.discovery.namespace}
+#        group: DEFAULT_GROUP
+#        file-extension: yml
+#    gateway:
+#      default-filters:
+#        - name: RequestLog
+#      routes:
+#        - id: ServiceTest
+#          uri: lb://ServiceTest
+#          predicates:
+#            - Path=/api/test/**
+#          filters:
+#            - StripPrefix=1
+#
+#        - id: user
+#          uri: lb://user
+#          predicates:
+#            - Path=/api/user/**
+#          filters:
+#            - StripPrefix=1
+#
+#        - id: auth
+#          uri: lb://auth
+#          predicates:
+#            - Path=/auth/**
+#  config:
+#    import:
+#      - optional:nacos:application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+#      - optional:nacos:${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+#      - optional:nacos:logback-spring-nacos.xml
+
+
+  thymeleaf:
+    cache: false # 开发阶段关闭缓存
+    prefix: classpath:/templates/ # 模板文件路径（默认：classpath:/templates/）
+    suffix: .html  # 文件后缀（默认：.html）
+    encoding: UTF-8 # 编码（默认：UTF-8）

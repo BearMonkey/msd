@@ -1,0 +1,111 @@
+2025-04-03 09:29:34,994 INFO  14172 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:51 - Starting Oauth2ClientApp using Java 17.0.14 with PID 14172 (E:\dev\code\msd\cloud-parent\framework\oauth2-client-demo\target\classes started by cc in E:\dev\code\msd)
+2025-04-03 09:29:34,994 INFO  25628 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:51 - Starting Oauth2ClientApp using Java 17.0.14 with PID 25628 (E:\dev\code\msd\cloud-parent\framework\oauth2-client-demo\target\classes started by cc in E:\dev\code\msd)
+2025-04-03 09:29:35,003 INFO  25628 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:636 - The following 1 profile is active: "dev"
+2025-04-03 09:29:35,004 INFO  14172 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:636 - The following 1 profile is active: "dev"
+2025-04-03 09:29:37,192 INFO  14172 [,] [main] o.s.b.w.e.tomcat.TomcatWebServer.java:108 - Tomcat initialized with port(s): 8080 (http)
+2025-04-03 09:29:37,192 INFO  25628 [,] [main] o.s.b.w.e.tomcat.TomcatWebServer.java:108 - Tomcat initialized with port(s): 8080 (http)
+2025-04-03 09:29:37,203 INFO  14172 [,] [main] o.a.coyote.http11.Http11NioProtocol.java:173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-03 09:29:37,203 INFO  25628 [,] [main] o.a.coyote.http11.Http11NioProtocol.java:173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-03 09:29:37,203 INFO  14172 [,] [main] o.a.catalina.core.StandardService.java:173 - Starting service [Tomcat]
+2025-04-03 09:29:37,203 INFO  25628 [,] [main] o.a.catalina.core.StandardService.java:173 - Starting service [Tomcat]
+2025-04-03 09:29:37,203 INFO  14172 [,] [main] o.a.catalina.core.StandardEngine.java:173 - Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-04-03 09:29:37,203 INFO  25628 [,] [main] o.a.catalina.core.StandardEngine.java:173 - Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-04-03 09:29:37,358 INFO  25628 [,] [main] o.a.c.c.C.[Tomcat].[localhost].[/].java:173 - Initializing Spring embedded WebApplicationContext
+2025-04-03 09:29:37,358 INFO  14172 [,] [main] o.a.c.c.C.[Tomcat].[localhost].[/].java:173 - Initializing Spring embedded WebApplicationContext
+2025-04-03 09:29:37,358 INFO  25628 [,] [main] o.s.b.w.s.c.ServletWebServerApplicationContext.java:291 - Root WebApplicationContext: initialization completed in 2229 ms
+2025-04-03 09:29:37,358 INFO  14172 [,] [main] o.s.b.w.s.c.ServletWebServerApplicationContext.java:291 - Root WebApplicationContext: initialization completed in 2191 ms
+2025-04-03 09:29:37,543 WARN  14172 [,] [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.java:86 - 
+
+Using generated security password: a3404782-f20a-410e-a341-097993fc021e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-04-03 09:29:37,543 WARN  25628 [,] [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.java:86 - 
+
+Using generated security password: ce5ff253-c0d6-4510-9428-b46cea9860a8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-04-03 09:29:37,825 INFO  25628 [,] [main] o.s.s.web.DefaultSecurityFilterChain.java:54 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@73c31181, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3d620a1, org.springframework.security.web.context.SecurityContextHolderFilter@9b23822, org.springframework.security.web.header.HeaderWriterFilter@5e26f1ed, org.springframework.security.web.csrf.CsrfFilter@6f8e9d06, org.springframework.security.web.authentication.logout.LogoutFilter@4da1f38a, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@14447be, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@5eb5da12, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1a01d7f0, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@4f486211, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6a6c7f42, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3becc950, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@51e3d37e, org.springframework.security.web.access.ExceptionTranslationFilter@66bf40e5, org.springframework.security.web.access.intercept.AuthorizationFilter@5eabff6b]
+2025-04-03 09:29:37,825 INFO  14172 [,] [main] o.s.s.web.DefaultSecurityFilterChain.java:54 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3db432c2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34414ffc, org.springframework.security.web.context.SecurityContextHolderFilter@3635099, org.springframework.security.web.header.HeaderWriterFilter@4d7a64ca, org.springframework.security.web.csrf.CsrfFilter@5a1f778, org.springframework.security.web.authentication.logout.LogoutFilter@4c19d42e, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@5ae1c281, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@4ac8768e, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6b1b19cf, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@1903b5d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1095d23a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@83bb0f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4041739c, org.springframework.security.web.access.ExceptionTranslationFilter@472d0f4, org.springframework.security.web.access.intercept.AuthorizationFilter@1946384]
+2025-04-03 09:29:38,248 INFO  25628 [,] [main] o.a.coyote.http11.Http11NioProtocol.java:173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-03 09:29:38,248 INFO  14172 [,] [main] o.a.coyote.http11.Http11NioProtocol.java:173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-03 09:29:38,255 WARN  25628 [,] [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.java:592 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-04-03 09:29:38,259 INFO  25628 [,] [main] o.a.coyote.http11.Http11NioProtocol.java:173 - Pausing ProtocolHandler ["http-nio-8080"]
+2025-04-03 09:29:38,259 INFO  25628 [,] [main] o.a.catalina.core.StandardService.java:173 - Stopping service [Tomcat]
+2025-04-03 09:29:38,281 INFO  25628 [,] [main] o.a.coyote.http11.Http11NioProtocol.java:173 - Stopping ProtocolHandler ["http-nio-8080"]
+2025-04-03 09:29:38,282 INFO  25628 [,] [main] o.a.coyote.http11.Http11NioProtocol.java:173 - Destroying ProtocolHandler ["http-nio-8080"]
+2025-04-03 09:29:38,302 INFO  14172 [,] [main] o.s.b.w.e.tomcat.TomcatWebServer.java:220 - Tomcat started on port(s): 8080 (http) with context path ''
+2025-04-03 09:29:38,313 INFO  14172 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:57 - Started Oauth2ClientApp in 3.838 seconds (process running for 4.224)
+2025-04-03 09:29:38,329 ERROR 25628 [,] [main] o.s.b.d.LoggingFailureAnalysisReporter.java:40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-04-03 09:30:31,591 INFO  14172 [,] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/].java:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-03 09:30:31,591 INFO  14172 [,] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet.java:532 - Initializing Servlet 'dispatcherServlet'
+2025-04-03 09:30:31,593 INFO  14172 [,] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet.java:554 - Completed initialization in 2 ms
+2025-04-03 09:36:07,433 INFO  616 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:51 - Starting Oauth2ClientApp using Java 17.0.14 with PID 616 (E:\dev\code\msd\cloud-parent\framework\oauth2-client-demo\target\classes started by cc in E:\dev\code\msd)
+2025-04-03 09:36:07,436 INFO  616 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:636 - The following 1 profile is active: "dev"
+2025-04-03 09:36:07,741 WARN  616 [,] [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.java:592 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name 'getClientRegistration' defined in class path resource [org/monkey/msd/cloud/oauth2/config/GithubClient.class]: Cannot register bean definition [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=githubClient; factoryMethodName=getClientRegistration; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/monkey/msd/cloud/oauth2/config/GithubClient.class]] for bean 'getClientRegistration' since there is already [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=giteeClient; factoryMethodName=getClientRegistration; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/monkey/msd/cloud/oauth2/config/GiteeClient.class]] bound.
+2025-04-03 09:36:07,767 ERROR 616 [,] [main] o.s.b.d.LoggingFailureAnalysisReporter.java:40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The bean 'getClientRegistration', defined in class path resource [org/monkey/msd/cloud/oauth2/config/GithubClient.class], could not be registered. A bean with that name has already been defined in class path resource [org/monkey/msd/cloud/oauth2/config/GiteeClient.class] and overriding is disabled.
+
+Action:
+
+Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
+
+2025-04-03 09:36:30,298 INFO  27420 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:51 - Starting Oauth2ClientApp using Java 17.0.14 with PID 27420 (E:\dev\code\msd\cloud-parent\framework\oauth2-client-demo\target\classes started by cc in E:\dev\code\msd)
+2025-04-03 09:36:30,301 INFO  27420 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:636 - The following 1 profile is active: "dev"
+2025-04-03 09:36:30,599 WARN  27420 [,] [main] o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.java:592 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name 'getClientRegistration' defined in class path resource [org/monkey/msd/cloud/oauth2/config/GithubClient.class]: Cannot register bean definition [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=githubClient; factoryMethodName=getClientRegistration; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/monkey/msd/cloud/oauth2/config/GithubClient.class]] for bean 'getClientRegistration' since there is already [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=giteeClient; factoryMethodName=getClientRegistration; initMethodNames=null; destroyMethodNames=[(inferred)]; defined in class path resource [org/monkey/msd/cloud/oauth2/config/GiteeClient.class]] bound.
+2025-04-03 09:36:30,628 ERROR 27420 [,] [main] o.s.b.d.LoggingFailureAnalysisReporter.java:40 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The bean 'getClientRegistration', defined in class path resource [org/monkey/msd/cloud/oauth2/config/GithubClient.class], could not be registered. A bean with that name has already been defined in class path resource [org/monkey/msd/cloud/oauth2/config/GiteeClient.class] and overriding is disabled.
+
+Action:
+
+Consider renaming one of the beans or enabling overriding by setting spring.main.allow-bean-definition-overriding=true
+
+2025-04-03 09:38:00,841 INFO  22168 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:51 - Starting Oauth2ClientApp using Java 17.0.14 with PID 22168 (E:\dev\code\msd\cloud-parent\framework\oauth2-client-demo\target\classes started by cc in E:\dev\code\msd)
+2025-04-03 09:38:00,843 INFO  22168 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:636 - The following 1 profile is active: "dev"
+2025-04-03 09:38:01,544 INFO  22168 [,] [main] o.s.b.w.e.tomcat.TomcatWebServer.java:108 - Tomcat initialized with port(s): 8080 (http)
+2025-04-03 09:38:01,555 INFO  22168 [,] [main] o.a.coyote.http11.Http11NioProtocol.java:173 - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-03 09:38:01,556 INFO  22168 [,] [main] o.a.catalina.core.StandardService.java:173 - Starting service [Tomcat]
+2025-04-03 09:38:01,556 INFO  22168 [,] [main] o.a.catalina.core.StandardEngine.java:173 - Starting Servlet engine: [Apache Tomcat/10.1.5]
+2025-04-03 09:38:01,608 INFO  22168 [,] [main] o.a.c.c.C.[Tomcat].[localhost].[/].java:173 - Initializing Spring embedded WebApplicationContext
+2025-04-03 09:38:01,609 INFO  22168 [,] [main] o.s.b.w.s.c.ServletWebServerApplicationContext.java:291 - Root WebApplicationContext: initialization completed in 739 ms
+2025-04-03 09:38:01,698 WARN  22168 [,] [main] o.s.b.a.s.s.UserDetailsServiceAutoConfiguration.java:86 - 
+
+Using generated security password: 87b98d9a-fe80-4cc7-abee-b5a3d9e52407
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-04-03 09:38:01,786 INFO  22168 [,] [main] o.s.s.web.DefaultSecurityFilterChain.java:54 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1e3ff233, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3c952a33, org.springframework.security.web.context.SecurityContextHolderFilter@1536ea40, org.springframework.security.web.header.HeaderWriterFilter@1c57f6b2, org.springframework.security.web.csrf.CsrfFilter@3e377967, org.springframework.security.web.authentication.logout.LogoutFilter@76ff68c5, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@33bb3f86, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@1946384, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@67770b37, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@70029d2d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7792d851, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1235151c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1150d471, org.springframework.security.web.access.ExceptionTranslationFilter@494c8f29, org.springframework.security.web.access.intercept.AuthorizationFilter@25a94b55]
+2025-04-03 09:38:01,999 INFO  22168 [,] [main] o.a.coyote.http11.Http11NioProtocol.java:173 - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-03 09:38:02,014 INFO  22168 [,] [main] o.s.b.w.e.tomcat.TomcatWebServer.java:220 - Tomcat started on port(s): 8080 (http) with context path ''
+2025-04-03 09:38:02,028 INFO  22168 [,] [main] o.m.msd.cloud.oauth2.Oauth2ClientApp.java:57 - Started Oauth2ClientApp in 1.588 seconds (process running for 1.913)
+2025-04-03 09:38:21,681 INFO  22168 [,] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/].java:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-03 09:38:21,681 INFO  22168 [,] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet.java:532 - Initializing Servlet 'dispatcherServlet'
+2025-04-03 09:38:21,682 INFO  22168 [,] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet.java:554 - Completed initialization in 1 ms

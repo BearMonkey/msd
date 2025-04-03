@@ -16,6 +16,8 @@
         <module>gateway</module>
         <module>auth</module>
         <module>user</module>
+        <module>oauth2-client-demo</module>
+        <module>oauth2-server-demo</module>
     </modules>
 
     <properties>
